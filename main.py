@@ -2,6 +2,7 @@ import pygame
 import sys
 from player import Player
 from interactable import InteractableObject
+from message import MessageDisplay
 
 # Initialize pygame
 pygame.init()
@@ -19,8 +20,7 @@ interactable = InteractableObject(WIDTH // 2 - 100, HEIGHT // 2)
 
 # Message display
 font = pygame.font.SysFont(None, 32)
-show_message = False
-message_text = "You found a mysterious object!"
+message = MessageDisplay(font, "You found a mysterious object!", WIDTH, HEIGHT)
 
 clock = pygame.time.Clock()
 
@@ -33,21 +33,16 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if interactable.collides_with(player.get_rect()):
-                    show_message = not show_message
+                    message.toggle()
                 else:
-                    show_message = False
+                    message.hide()
 
     keys = pygame.key.get_pressed()
     player.move(keys)
 
     screen.fill((30, 30, 30))
-    # Draw interactable object
     interactable.draw(screen)
-    # Draw player
     player.draw(screen)
-    # Show message if interacted
-    if show_message:
-        msg_surface = font.render(message_text, True, (255, 255, 255))
-        screen.blit(msg_surface, (WIDTH // 2 - msg_surface.get_width() // 2, HEIGHT - 60))
+    message.draw(screen)
     pygame.display.flip()
     clock.tick(60)
