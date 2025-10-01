@@ -1,7 +1,8 @@
 import pygame
 import sys
 from player import Player
-from interactable import InteractableObject
+from npc import Npc
+from interactable import Interactable
 from message import MessageDisplay
 
 # Initialize pygame
@@ -15,8 +16,11 @@ pygame.display.set_caption("2D RPG")
 # Player setup
 player = Player(WIDTH // 2, HEIGHT // 2)
 
+# NPC setup
+npc = Npc(WIDTH // 2 + 150, HEIGHT // 2 - 150)
+
 # Interactable object setup
-interactable = InteractableObject(WIDTH // 2 - 100, HEIGHT // 2)
+interactable = Interactable(WIDTH // 2 - 100, HEIGHT // 2)
 
 # Message display
 font = pygame.font.SysFont(None, 32)
@@ -39,9 +43,11 @@ while True:
 
     keys = pygame.key.get_pressed()
     player.move(keys)
+    npc.move()
 
     screen.fill((30, 30, 30))
     interactable.draw(screen)
+    npc.draw(screen)
     player.draw(screen)
     message.draw(screen)
     pygame.display.flip()
