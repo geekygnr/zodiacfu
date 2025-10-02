@@ -24,7 +24,7 @@ interactable = Interactable(WIDTH // 2 - 100, HEIGHT // 2)
 
 # Message display
 font = pygame.font.SysFont(None, 32)
-message = MessageDisplay(font, "You found a mysterious object!", WIDTH, HEIGHT)
+message = MessageDisplay(font, WIDTH, HEIGHT)
 
 clock = pygame.time.Clock()
 
@@ -39,7 +39,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if interactable.collides_with(player.get_rect()):
-                    message.set("You found a mysterious object!")
+                    message.set("There is an evil orange square around!")
                     message.show()
                 else:
                     message.hide()
@@ -56,7 +56,7 @@ while True:
     player.move(keys)
     npc.move()
     if npc.collides_with(player.get_rect()):
-        message.set("Hello, traveler!")
+        message.set("Out of my way!")
         message.show()
 
     screen.fill((30, 30, 30))

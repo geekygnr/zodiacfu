@@ -1,9 +1,9 @@
 import pygame
 
 class MessageDisplay:
-    def __init__(self, font, text, width, height):
+    def __init__(self, font, width, height):
         self.font = font
-        self.text = text
+        self.text = "--EMPTY--"
         self.width = width
         self.height = height
         self.visible = False
