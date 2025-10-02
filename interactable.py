@@ -14,3 +14,5 @@ class Interactable:
         return self.rect
     def update_rect(self):
         self.rect = pygame.Rect(*self.pos, self.size, self.size)
+    def set_color(self, color):
+        self.color = color

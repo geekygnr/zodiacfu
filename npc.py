@@ -19,9 +19,9 @@ class Npc(Interactable):
         self.pos[1] += self.direction[1] * self.speed
         self.relative[0] += 1 * self.direction[0]
         self.relative[1] += 1 * self.direction[1]
-        self.adjust_direction()
+        self.__adjust_direction()
         self.update_rect()
-    def adjust_direction(self):
+    def __adjust_direction(self):
         if self.relative[0] <= 0 and self.relative[1] <= 0:
             self.direction[0] = 0
             self.direction[1] = 1
